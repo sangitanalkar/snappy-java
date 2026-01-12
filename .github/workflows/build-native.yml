@@ -24,7 +24,7 @@ jobs:
   build:
     strategy:
       matrix:
-        platform: [ubuntu-latest]
+        platform: [self-hosted]
     permissions:
       contents: write
       pull-requests: write
