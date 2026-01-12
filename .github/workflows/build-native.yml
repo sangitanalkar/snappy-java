@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - main
+      - s390-GHA
     paths:
       - 'src/main/resources/org/xerial/snappy/VERSION'
       - 'Makefile'
@@ -22,11 +22,14 @@ on:
 
 jobs:
   build:
+    strategy:
+      matrix:
+        platform: [ubuntu-latest, self-hosted]
     permissions:
       contents: write
       pull-requests: write
     name: Build native libraries
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.platform }}
     steps:
       - uses: actions/checkout@v6
       - name: Setup cmake
