@@ -29,26 +29,27 @@ jobs:
               - '.scalafmt.conf'
               - 'sbt'
               - 'sbt.bat'
-      - uses: actions/setup-java@v4
-        with:
-          java-version: '17'
-          distribution: 'temurin'
-          
+              
   code_format:
     name: code format
     needs: changes
     if: ${{ needs.changes.outputs.code == 'true' }}
     runs-on: self-hosted
-    steps:
+    steps: 
+      - uses: actions/setup-java@v4
+        with:
+          java-version: 17
+          distribution: 'temurin'
       - uses: actions/checkout@v6
       - name: scalafmt test
         run: ./sbt scalafmtCheckAll
+        
   test-jdk:
     strategy:
       matrix:
         version: [ '8', '11', '17', '21', '25' ]
     name: test jdk${{ matrix.version }}
-    needs: changes
+    needs: code_format
     if: ${{ needs.changes.outputs.code == 'true' }}
     runs-on: self-hosted
     steps:
