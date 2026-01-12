@@ -29,14 +29,12 @@ jobs:
               - '.scalafmt.conf'
               - 'sbt'
               - 'sbt.bat'
+      - uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          
   code_format:
-    name: Set up JDK 17
-    uses: actions/setup-java@v4
-      with:
-        java-version: '17'
-        distribution: 'temurin' # Eclipse Temurin is a common, widely used distribution
-        cache: 'maven'
-        
     name: code format
     needs: changes
     if: ${{ needs.changes.outputs.code == 'true' }}
