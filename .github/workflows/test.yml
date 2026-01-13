@@ -39,7 +39,7 @@ jobs:
       - uses: actions/setup-java@v4
         with:
           java-version: 17
-          distribution: 'temurin'
+          distribution: 'semeru'
       - uses: actions/checkout@v6
       - name: scalafmt test
         run: ./sbt scalafmtCheckAll
