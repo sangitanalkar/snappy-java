@@ -4,7 +4,7 @@ on:
   pull_request:
   push:
     branches:
-      - s390-GHA
+      - master
 
 jobs:
   changes:
