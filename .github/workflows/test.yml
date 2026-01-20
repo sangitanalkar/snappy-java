@@ -38,7 +38,7 @@ jobs:
     steps: 
       - uses: actions/setup-java@v4
         with:
-          java-version: 17
+          java-version: 21
           distribution: 'semeru'
       - uses: actions/checkout@v6
       - name: scalafmt test
@@ -47,7 +47,7 @@ jobs:
   test-jdk:
     strategy:
       matrix:
-        version: [ '17' ]
+        version: [ '21' ]
     name: test jdk${{ matrix.version }}
     needs: code_format
     if: ${{ needs.changes.outputs.code == 'true' }}
